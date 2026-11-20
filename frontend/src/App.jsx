@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { publicUniversities } from './universities.js'
 import './App.css'
 
 const photos = {
@@ -34,7 +35,7 @@ const heroSlides = [
     emphasis: 'Let’s find it.',
     description: 'Post a lost item or share a recent find. Help useful belongings get back to the students who need them.',
     action: 'Explore Lost & Found',
-    href: '#lost-found',
+    href: '/lost-found',
     title: 'Lost & Found',
     location: 'BAHIR DAR, ETHIOPIA',
     note: 'Good things find their way.',
@@ -47,10 +48,36 @@ const heroSlides = [
     emphasis: 'Fair prices.',
     description: 'Buy, sell, and pass on books, tech, and campus essentials with students in your community.',
     action: 'Browse the marketplace',
-    href: '#marketplace',
+    href: '/marketplace',
     title: 'Student marketplace',
     location: 'GONDAR, ETHIOPIA',
     note: 'Student-to-student, close to home.',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1800&q=90',
+    alt: 'Wireless headphones for listening and studying on campus',
+    eyebrow: 'CAMPUS MARKETPLACE',
+    headline: 'Find your focus.',
+    emphasis: 'Tune in.',
+    description: 'Browse headphones, earphones, and student essentials offered by people in your campus community.',
+    action: 'Explore campus finds',
+    href: '/marketplace',
+    title: 'Headphones for campus',
+    location: 'BUY · SELL · DISCOVER',
+    note: 'Your next study essential is close by.',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=1800&q=90',
+    alt: 'Wireless earphones for a student commute',
+    eyebrow: 'STUDENT-TO-STUDENT FINDS',
+    headline: 'Small essentials.',
+    emphasis: 'Big campus days.',
+    description: 'Find useful tech and everyday essentials, or pass along something another student can use.',
+    action: 'Browse the marketplace',
+    href: '/marketplace',
+    title: 'Earphones and everyday tech',
+    location: 'MADE FOR STUDENT LIFE',
+    note: 'Discover good finds around you.',
   },
   {
     image: photos.addisGate,
@@ -60,7 +87,7 @@ const heroSlides = [
     emphasis: 'More together.',
     description: 'Share what’s happening, meet your people, and find the next celebration—from GC Day to Half Life.',
     action: 'See campus events',
-    href: '#events',
+    href: '/community',
     title: 'Campus community',
     location: 'MADE FOR ETHIOPIAN CAMPUSES',
     note: 'The little things bring us together.',
@@ -77,6 +104,45 @@ const heroSlides = [
     title: 'Student celebrations',
     location: 'MADE FOR STUDENT LIFE',
     note: 'Find your next campus moment.',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=1800&q=90',
+    alt: 'Books and study materials ready for a new student owner',
+    eyebrow: 'CAMPUS MARKETPLACE',
+    headline: 'Pass it on.',
+    emphasis: 'Find your next.',
+    description: 'Discover books and campus essentials from students nearby, or give useful things a second life.',
+    action: 'Explore the marketplace',
+    href: '/marketplace',
+    title: 'Student marketplace',
+    location: 'BUY · SELL · PASS IT ON',
+    note: 'Good finds, close to campus.',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1800&q=90',
+    alt: 'Laptop and study essentials on a desk',
+    eyebrow: 'FOR STUDENTS & CAMPUS SELLERS',
+    headline: 'Great gear.',
+    emphasis: 'Right nearby.',
+    description: 'A campus-first place to discover useful tech, study supplies, and everyday essentials from student sellers and local businesses.',
+    action: 'See what’s on campus',
+    href: '/marketplace',
+    title: 'Campus finds',
+    location: 'STUDENTS · LOCAL BUSINESSES',
+    note: 'Useful things, closer to you.',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1800&q=90',
+    alt: 'A backpack ready for a day on campus',
+    eyebrow: 'BUY · SELL · DISCOVER',
+    headline: 'Your next find',
+    emphasis: 'starts here.',
+    description: 'Browse student-to-student listings, share what you no longer need, and help campus essentials find a new home.',
+    action: 'Browse campus finds',
+    href: '/marketplace',
+    title: 'Campus marketplace',
+    location: 'MADE FOR CAMPUS LIFE',
+    note: 'A better way to pass good things on.',
   },
 ]
 
@@ -196,7 +262,148 @@ const campusEvents = [
   },
 ]
 
-const eventFilters = ['All events', 'Celebration', 'Culture', 'Clubs']
+const demoDataStorageKey = 'campuslink-demo-data'
+
+const marketplaceListings = [
+  {
+    title: 'Engineering Mathematics',
+    category: 'Books',
+    price: 'ETB 850',
+    condition: 'Good condition',
+    campus: 'Addis Ababa',
+    image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=1000&q=85',
+    alt: 'Stack of textbooks available from a student',
+    seller: 'Student seller',
+  },
+  {
+    title: 'Everyday study backpack',
+    category: 'Campus essentials',
+    price: 'ETB 1,200',
+    condition: 'Like new',
+    campus: 'Bahir Dar',
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=85',
+    alt: 'Backpack ready for everyday campus use',
+    seller: 'Student seller',
+  },
+  {
+    title: 'Laptop for study',
+    category: 'Technology',
+    price: 'ETB 18,500',
+    condition: 'Good condition',
+    campus: 'Addis Ababa',
+    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1000&q=85',
+    alt: 'Laptop and accessories on a desk',
+    seller: 'Campus business',
+  },
+  {
+    title: 'Campus reading collection',
+    category: 'Books',
+    price: 'ETB 600',
+    condition: 'Pre-loved',
+    campus: 'Gondar',
+    image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1000&q=85',
+    alt: 'Books available to pass on to another student',
+    seller: 'Student seller',
+  },
+  {
+    title: 'Wireless headphones',
+    category: 'Technology',
+    price: 'ETB 2,400',
+    condition: 'Like new',
+    campus: 'Hawassa',
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=85',
+    alt: 'Wireless headphones for study and travel',
+    seller: 'Campus business',
+  },
+  {
+    title: 'Desk lamp for late study',
+    category: 'Campus essentials',
+    price: 'ETB 950',
+    condition: 'Good condition',
+    campus: 'Jimma',
+    image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1000&q=85',
+    alt: 'Desk lamp for a student study space',
+    seller: 'Student seller',
+  },
+]
+
+const demoPosts = {
+  MARKETPLACE: marketplaceListings.map((listing, index) => ({
+    id: `market-${index + 1}`,
+    type: 'MARKETPLACE',
+    title: listing.title,
+    description: `${listing.condition}. Message the seller to arrange a convenient campus meet-up.`,
+    category: listing.category,
+    campus: listing.campus,
+    price: Number(listing.price.replace(/[^\d.]/g, '')),
+    mediaUrl: listing.image,
+    mediaType: 'IMAGE',
+    authorUsername: listing.seller === 'Campus business' ? 'campus-store' : `student${index + 1}`,
+    createdAt: new Date(Date.now() - index * 86400000).toISOString(),
+  })),
+  LOST_FOUND: [
+    { id: 'lost-1', title: 'Blue notebook found near the library', description: 'Found after the afternoon lecture. Share the course cover details so I can return it to its owner.', category: 'Found', campus: 'Addis Ababa', mediaUrl: lostSlides[0].image, mediaType: 'IMAGE', authorUsername: 'sara_m', createdAt: new Date(Date.now() - 3 * 3600000).toISOString() },
+    { id: 'lost-2', title: 'Looking for a set of keys', description: 'Lost a small keyring near the student centre. Please get in touch if you have seen it.', category: 'Lost', campus: 'Bahir Dar', mediaUrl: lostSlides[1].image, mediaType: 'IMAGE', authorUsername: 'dawit_k', createdAt: new Date(Date.now() - 86400000).toISOString() },
+    { id: 'lost-3', title: 'Calculator left in lecture hall 2', description: 'Found a scientific calculator after class. Tell me the brand and a detail to confirm it is yours.', category: 'Found', campus: 'Gondar', mediaUrl: lostSlides[2].image, mediaType: 'IMAGE', authorUsername: 'student_abel', createdAt: new Date(Date.now() - 2 * 86400000).toISOString() },
+  ],
+  EVENT: campusEvents.map((event, index) => ({
+    id: `event-${index + 1}`,
+    type: 'EVENT',
+    title: event.title,
+    description: event.description,
+    category: event.category,
+    campus: event.campus,
+    mediaUrl: event.image,
+    mediaType: 'IMAGE',
+    authorUsername: `campus-club-${index + 1}`,
+    createdAt: new Date(Date.now() - index * 3600000).toISOString(),
+    eventDate: new Date(Date.now() + (index + 2) * 86400000).toISOString(),
+  })),
+  SOCIAL: [
+    { id: 'social-1', type: 'SOCIAL', title: 'Welcome week study group', description: 'Anyone taking first-year calculus? A few of us are meeting in the library this week to revise together. All levels welcome.', category: 'Study group', campus: 'Addis Ababa', mediaUrl: photos.addis, mediaType: 'IMAGE', authorUsername: 'hana_reads', createdAt: new Date(Date.now() - 2 * 3600000).toISOString() },
+    { id: 'social-2', type: 'SOCIAL', title: 'Share your favorite quiet study spot', description: 'Collecting recommendations for calm corners around campus. Add yours and help someone find a new place to focus.', category: 'Conversation', campus: 'Bahir Dar', mediaUrl: photos.bahir, mediaType: 'IMAGE', authorUsername: 'miki_t', createdAt: new Date(Date.now() - 8 * 3600000).toISOString() },
+    { id: 'social-3', type: 'SOCIAL', title: 'Photography club walk this Friday', description: 'We are exploring campus with cameras and phones. Beginners are welcome—come meet other creatives.', category: 'Clubs', campus: 'Gondar', mediaUrl: photos.gondar, mediaType: 'IMAGE', authorUsername: 'campus.creatives', createdAt: new Date(Date.now() - 86400000).toISOString() },
+  ],
+}
+
+function readDemoData() {
+  try {
+    const data = JSON.parse(window.localStorage.getItem(demoDataStorageKey) || '{}')
+    return data && typeof data === 'object' ? data : {}
+  } catch {
+    return {}
+  }
+}
+
+function readDemoPosts(type) {
+  const savedPosts = readDemoData().posts?.[type]
+  return Array.isArray(savedPosts) ? savedPosts : demoPosts[type]
+}
+
+function persistDemoPost(type, post, currentPosts) {
+  try {
+    const data = readDemoData()
+    data.posts = { ...data.posts, [type]: [post, ...currentPosts] }
+    window.localStorage.setItem(demoDataStorageKey, JSON.stringify(data))
+    return true
+  } catch {
+    return false
+  }
+}
+
+function readDemoOrders(username) {
+  const orders = readDemoData().orders
+  return Array.isArray(orders)
+    ? orders.filter((order) => order.buyerUsername === username || order.sellerUsername === username)
+    : []
+}
+
+function writeDemoOrder(order) {
+  const data = readDemoData()
+  const allOrders = Array.isArray(data.orders) ? data.orders : []
+  data.orders = [order, ...allOrders.filter((item) => item.id !== order.id)]
+  window.localStorage.setItem(demoDataStorageKey, JSON.stringify(data))
+}
 
 function ArrowIcon({ diagonal = false, className = 'size-4' }) {
   return diagonal ? (
@@ -243,24 +450,78 @@ function Brand({ light = false, href = '#home' }) {
   )
 }
 
+function UniversityLogo({ name, logo, initials }) {
+  const [failedToLoad, setFailedToLoad] = useState(false)
+
+  return (
+    <span className="university-logo">
+      {logo && !failedToLoad
+        ? <img src={logo} alt={`${name} logo`} loading="lazy" decoding="async" onError={() => setFailedToLoad(true)} />
+        : <span aria-hidden="true">{initials}</span>}
+    </span>
+  )
+}
+
+function UniversityMarquee() {
+  const renderUniversities = (isDuplicate = false) => (
+    <div className="university-marquee-group" aria-hidden={isDuplicate || undefined}>
+      {publicUniversities.map(({ name, logo }) => {
+        const initials = name
+          .replace(/\b(university|of|the)\b/gi, '')
+          .trim()
+          .split(/\s+/)
+          .map((word) => word[0])
+          .slice(0, 2)
+          .join('')
+          .toUpperCase()
+
+        return (
+          <div className="university-marquee-card" key={`${isDuplicate ? 'duplicate-' : ''}${name}`} title={name}>
+            <UniversityLogo name={name} logo={logo} initials={initials} />
+            <span className="university-name">{name}</span>
+          </div>
+        )
+      })}
+    </div>
+  )
+
+  return (
+    <section className="university-directory" aria-labelledby="university-directory-title">
+      <div className="university-directory-heading mx-auto flex w-[min(1240px,calc(100%-40px))] flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-blue-700">Across Ethiopia</p>
+          <h2 className="mt-2 text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl" id="university-directory-title">
+            Public universities across Ethiopia.
+          </h2>
+        </div>
+        <p className="max-w-lg text-xs leading-5 text-slate-500">
+          Selected universities for discovery—not a list of confirmed CampusLink partners.
+        </p>
+      </div>
+      <div className="university-marquee-viewport mt-6" aria-label="Public university directory">
+        <div className="university-marquee-track">
+          {renderUniversities()}
+          {renderUniversities(true)}
+        </div>
+      </div>
+      <p className="university-logo-attribution mx-auto mt-3 w-[min(1240px,calc(100%-40px))]">
+        Directory names: <a href="https://en.wikipedia.org/wiki/List_of_universities_and_colleges_in_Ethiopia" target="_blank" rel="noreferrer">Ethiopian university listings</a>. Verified marks: <a href="https://commons.wikimedia.org/wiki/File:Dilla_University.jpg" target="_blank" rel="noreferrer">Dilla University</a> and <a href="https://commons.wikimedia.org/wiki/File:Dire-Dawa_University_Logo.jpg" target="_blank" rel="noreferrer">Dire Dawa University</a> (CC BY-SA 4.0); <a href="https://commons.wikimedia.org/wiki/File:Hulogo.jpg" target="_blank" rel="noreferrer">Haramaya University</a> (public domain).
+      </p>
+    </section>
+  )
+}
+
 function SiteHeader({ activePage, authSession, theme, onToggleTheme, onRegister, onLogout }) {
   const [isScrolled, setIsScrolled] = useState(() => window.scrollY > 48)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const homePage = activePage === 'home'
-  const navItems = homePage
-    ? [
-        { label: 'Lost & Found', href: '#lost-found' },
-        { label: 'Marketplace', href: '#marketplace' },
-        { label: 'Social', href: '#community' },
-        { label: 'Events', href: '/events' },
-      ]
-    : [
-        { label: 'Home', href: '/' },
-        { label: 'Lost & Found', href: '/#lost-found' },
-        { label: 'Marketplace', href: '/#marketplace' },
-        { label: 'Social', href: '/#community' },
-        { label: 'Events', href: '/events' },
-      ]
+  const navItems = [
+    ...(!homePage ? [{ label: 'Home', href: '/' }] : []),
+    { label: 'Lost & Found', href: '/lost-found', page: 'lost-found' },
+    { label: 'Marketplace', href: '/marketplace', page: 'marketplace' },
+    { label: 'Social', href: '/community', page: 'community' },
+    { label: 'Events', href: '/events', page: 'events' },
+  ]
 
   useEffect(() => {
     const updateScrollState = () => setIsScrolled(window.scrollY > 48)
@@ -272,14 +533,14 @@ function SiteHeader({ activePage, authSession, theme, onToggleTheme, onRegister,
     <header className={`site-header ${isScrolled ? 'is-scrolled' : 'is-transparent'}`}>
       <div className="site-header-inner mx-auto flex h-[72px] w-[min(1240px,calc(100%-32px))] items-center justify-between gap-3 sm:w-[min(1240px,calc(100%-40px))]">
         <Brand light={!isScrolled} href={homePage ? '#home' : '/'} />
-        <nav className="site-desktop-nav hidden items-center gap-5 lg:flex xl:gap-8" aria-label="Main navigation">
+        <nav className="site-desktop-nav hidden items-center gap-5 md:flex xl:gap-8" aria-label="Main navigation">
           {navItems.map((item) => (
             <a
-              className={`site-nav-link text-sm font-medium transition ${item.label === 'Events' && activePage === 'events' ? 'is-active' : ''}`}
+              className={`site-nav-link text-sm font-medium transition ${item.page === activePage ? 'is-active' : ''}`}
               href={item.href}
               onClick={() => setIsMenuOpen(false)}
               key={item.label}
-              aria-current={item.label === 'Events' && activePage === 'events' ? 'page' : undefined}
+              aria-current={item.page === activePage ? 'page' : undefined}
             >
               {item.label}
             </a>
@@ -289,9 +550,9 @@ function SiteHeader({ activePage, authSession, theme, onToggleTheme, onRegister,
           {authSession && <span className="site-user-greeting hidden text-sm font-semibold xl:inline">Hi, {authSession.user.username}</span>}
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           {authSession ? (
-            <button className="campus-button site-header-secondary hidden px-4 py-2.5 text-sm font-semibold sm:inline-flex" onClick={onLogout} type="button">Log out</button>
+            <button className="campus-button site-header-secondary hidden px-4 py-2.5 text-sm font-semibold md:inline-flex" onClick={onLogout} type="button">Log out</button>
           ) : (
-            <button className="campus-button campus-button-primary hidden items-center gap-2 px-4 py-2.5 text-sm font-semibold sm:inline-flex" onClick={onRegister} type="button">
+            <button className="campus-button campus-button-primary hidden items-center gap-2 px-4 py-2.5 text-sm font-semibold md:inline-flex" onClick={onRegister} type="button">
               Join your campus <ArrowIcon diagonal />
             </button>
           )}
@@ -299,7 +560,7 @@ function SiteHeader({ activePage, authSession, theme, onToggleTheme, onRegister,
             aria-controls="mobile-site-menu"
             aria-expanded={isMenuOpen}
             aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            className="site-menu-toggle lg:hidden"
+            className="site-menu-toggle grid md:hidden"
             onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
             type="button"
           >
@@ -310,14 +571,14 @@ function SiteHeader({ activePage, authSession, theme, onToggleTheme, onRegister,
         </div>
       </div>
       {isMenuOpen && (
-        <nav className="site-mobile-menu lg:hidden" id="mobile-site-menu" aria-label="Mobile navigation">
+        <nav className="site-mobile-menu grid md:hidden" id="mobile-site-menu" aria-label="Mobile navigation">
           {navItems.map((item) => (
             <a
-              className={`site-mobile-link ${item.label === 'Events' && activePage === 'events' ? 'is-active' : ''}`}
+              className={`site-mobile-link ${item.page === activePage ? 'is-active' : ''}`}
               href={item.href}
               onClick={() => setIsMenuOpen(false)}
               key={item.label}
-              aria-current={item.label === 'Events' && activePage === 'events' ? 'page' : undefined}
+              aria-current={item.page === activePage ? 'page' : undefined}
             >
               {item.label}
             </a>
@@ -386,7 +647,7 @@ function SectionLabel({ number, children, light = false }) {
   )
 }
 
-function AuthPage({ mode, onChangeMode, onHome, onAuthenticated, theme, onToggleTheme }) {
+function AuthPage({ mode, onChangeMode, onHome, onAuthenticated }) {
   const [notice, setNotice] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [signedIn, setSignedIn] = useState(false)
@@ -429,9 +690,8 @@ function AuthPage({ mode, onChangeMode, onHome, onAuthenticated, theme, onToggle
 
   return (
     <main className="auth-page min-h-screen bg-slate-50 p-4 sm:p-8">
-      <div className="auth-page-toolbar mx-auto mb-4 flex w-full max-w-6xl items-center justify-between">
+      <div className="auth-page-toolbar mx-auto mb-4 flex w-full max-w-6xl">
         <a className="auth-back-link" href="#home" onClick={onHome}>← Back to CampusLink</a>
-        <ThemeToggle theme={theme} onToggle={onToggleTheme} />
       </div>
       <div className="auth-card mx-auto grid min-h-[min(760px,calc(100vh-96px))] max-w-6xl overflow-hidden bg-white shadow-2xl shadow-slate-900/10 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="auth-campus-image relative min-h-[240px] overflow-hidden sm:min-h-[320px] lg:min-h-full">
@@ -539,14 +799,408 @@ function AuthPage({ mode, onChangeMode, onHome, onAuthenticated, theme, onToggle
   )
 }
 
-function EventsPage({ authSession, onRegister, onLogout, theme, onToggleTheme }) {
-  const [activeFilter, setActiveFilter] = useState(eventFilters[0])
-  const [expandedEvent, setExpandedEvent] = useState(null)
-  const [interestedEvents, setInterestedEvents] = useState([])
-  const visibleEvents = campusEvents.filter((event) => (
-    activeFilter === eventFilters[0] || event.category === activeFilter
-  ))
+const communityTypes = {
+  MARKETPLACE: {
+    name: 'Marketplace',
+    categories: ['Books', 'Technology', 'Campus essentials'],
+    intro: 'Buy and sell useful things with students in your campus community.',
+    titleLabel: 'What are you selling?',
+  },
+  LOST_FOUND: {
+    name: 'Lost & Found',
+    categories: ['Lost', 'Found'],
+    intro: 'Post a lost item or help return something a student has found.',
+    titleLabel: 'What item are you looking for or reporting?',
+  },
+  EVENT: {
+    name: 'Events',
+    categories: ['Celebration', 'Culture', 'Clubs', 'Study'],
+    intro: 'Share an event and help classmates find their next campus moment.',
+    titleLabel: 'What is happening?',
+  },
+  SOCIAL: {
+    name: 'Campus community',
+    categories: ['Conversation', 'Announcement', 'Question'],
+    intro: 'Share ideas, announcements, and everyday moments with your campus.',
+    titleLabel: 'What would you like to share?',
+  },
+}
 
+function PostComposer({ type, authSession, onRegister, onCreated }) {
+  const [notice, setNotice] = useState('')
+  const config = communityTypes[type]
+
+  if (!authSession) {
+    return (
+      <div className="post-sign-in-prompt">
+        <p>Sign in to post to {config.name.toLowerCase()} and connect with your campus.</p>
+        <button className="campus-button campus-button-primary px-4 py-2.5 text-sm font-semibold" onClick={onRegister} type="button">
+          Join CampusLink
+        </button>
+      </div>
+    )
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const post = {
+      id: `demo-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      type,
+      title: formData.get('title').trim(),
+      description: formData.get('description').trim(),
+      category: formData.get('category'),
+      campus: formData.get('campus').trim(),
+      price: formData.get('price') ? Number(formData.get('price')) : null,
+      eventDate: formData.get('eventDate') || null,
+      mediaUrl: demoPosts[type][0]?.mediaUrl,
+      mediaType: 'IMAGE',
+      authorUsername: authSession.user.username,
+      createdAt: new Date().toISOString(),
+    }
+    const wasSaved = onCreated(post)
+    form.reset()
+    setNotice(wasSaved
+      ? 'Demo post added. It is saved in this browser only.'
+      : 'Demo post added for this session. Browser storage is unavailable.')
+  }
+
+  return (
+    <form className="post-composer" onSubmit={handleSubmit}>
+      <div className="post-composer-heading">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-700">Share with your campus</p>
+          <h3 className="mt-2 text-xl font-semibold text-slate-950">Create a {config.name.toLowerCase()} post</h3>
+        </div>
+        <span className="demo-mode-badge">Demo mode · saved in this browser</span>
+      </div>
+      <div className="post-form-grid">
+        <label className="post-field post-field-wide">
+          <span>{config.titleLabel}</span>
+          <input name="title" maxLength="120" required />
+        </label>
+        <label className="post-field">
+          <span>Type</span>
+          <select name="category" defaultValue={config.categories[0]} required>
+            {config.categories.map((category) => <option key={category}>{category}</option>)}
+          </select>
+        </label>
+        <label className="post-field">
+          <span>Your campus</span>
+          <input name="campus" maxLength="100" placeholder="University or campus" required />
+        </label>
+        {type === 'MARKETPLACE' && (
+          <label className="post-field">
+            <span>Price (ETB)</span>
+            <input name="price" min="0" placeholder="Optional" step="0.01" type="number" />
+          </label>
+        )}
+        {type === 'EVENT' && (
+          <label className="post-field">
+            <span>Event date and time</span>
+            <input name="eventDate" type="datetime-local" />
+          </label>
+        )}
+        <label className="post-field post-field-wide">
+          <span>Details</span>
+          <textarea name="description" maxLength="2000" required rows="4" />
+        </label>
+        <p className="post-field-wide media-coming-soon">Photos and videos will be connected when media storage is added. Demo posts use sample campus images.</p>
+      </div>
+      {notice && <p className="post-form-notice" role="status">{notice}</p>}
+      <button className="campus-button campus-button-primary px-5 py-3 text-sm font-semibold" type="submit">
+        Add demo {config.name.toLowerCase()} post
+      </button>
+    </form>
+  )
+}
+
+function MarketplaceOrderButton({ post, authSession, onRegister, orders, onOrder }) {
+  const [notice, setNotice] = useState('')
+  const isOwner = authSession?.user.username === post.authorUsername
+  const hasRequested = orders.some((order) => order.postId === post.id && order.buyerUsername === authSession?.user.username)
+  const requestOrder = () => {
+    if (!authSession) {
+      onRegister()
+      return
+    }
+    if (isOwner || hasRequested) return
+    const order = {
+      id: `demo-order-${Date.now()}`,
+      postId: post.id,
+      title: post.title,
+      price: post.price,
+      campus: post.campus,
+      buyerUsername: authSession.user.username,
+      sellerUsername: post.authorUsername,
+      status: 'PENDING',
+      createdAt: new Date().toISOString(),
+    }
+    const saved = onOrder(order)
+    setNotice(saved ? 'Demo request added to your order list.' : 'Request added for this session only.')
+  }
+
+  return (
+    <div className="market-order-action">
+      <button
+        className="campus-button campus-button-primary px-4 py-2 text-xs font-semibold"
+        disabled={isOwner || hasRequested}
+        onClick={requestOrder}
+        type="button"
+      >
+        {isOwner ? 'Your listing' : hasRequested ? 'Request sent' : authSession ? 'Request to buy' : 'Log in to request'}
+      </button>
+      {notice && <p role="status">{notice}</p>}
+    </div>
+  )
+}
+
+function MarketplaceOrders({ authSession, orders, onDecide }) {
+  return (
+    <section className="marketplace-orders">
+      <h3>My order requests</h3>
+      {orders.length ? (
+          <div className="marketplace-order-list">
+            {orders.map((order) => {
+              const isSeller = order.sellerUsername === authSession.user.username
+              return (
+                <article className="marketplace-order-row" key={order.id}>
+                  <div>
+                    <strong>{order.title}</strong>
+                    <p>{isSeller ? `Request from ${order.buyerUsername}` : `Seller: ${order.sellerUsername}`} · {order.campus}</p>
+                  </div>
+                  <span className={`order-status order-status-${order.status.toLowerCase()}`}>{order.status}</span>
+                  {isSeller && order.status === 'PENDING' && (
+                    <div className="flex gap-2">
+                      <button className="campus-button campus-button-primary px-3 py-2 text-xs font-semibold" onClick={() => onDecide(order, true)} type="button">Accept</button>
+                      <button className="campus-button campus-button-secondary px-3 py-2 text-xs font-semibold" onClick={() => onDecide(order, false)} type="button">Decline</button>
+                    </div>
+                  )}
+                </article>
+              )
+            })}
+          </div>
+        ) : <p className="text-sm text-slate-500">Your demo purchase requests will appear here.</p>}
+      <p className="mt-3 text-xs leading-5 text-slate-500">Demo mode only — requests are saved locally. Online checkout will be added later.</p>
+    </section>
+  )
+}
+
+function CommunityBoard({ type, authSession, onRegister }) {
+  const [posts, setPosts] = useState(() => readDemoPosts(type))
+  const [orders, setOrders] = useState(() => authSession ? readDemoOrders(authSession.user.username) : [])
+  const [activeFilter, setActiveFilter] = useState('All')
+  const [searchQuery, setSearchQuery] = useState('')
+  const config = communityTypes[type]
+  const filters = ['All', ...new Set([...config.categories, ...posts.map((post) => post.category)])]
+  const visiblePosts = posts.filter((post) => {
+    const matchesFilter = activeFilter === 'All' || post.category === activeFilter
+    const matchesQuery = `${post.title} ${post.description} ${post.category} ${post.campus}`
+      .toLowerCase()
+      .includes(searchQuery.trim().toLowerCase())
+    return matchesFilter && matchesQuery
+  })
+
+  const addPost = (post) => {
+    const saved = persistDemoPost(type, post, posts)
+    setPosts([post, ...posts])
+    return saved
+  }
+
+  const addOrder = (order) => {
+    try {
+      writeDemoOrder(order)
+      setOrders((current) => [order, ...current])
+      return true
+    } catch {
+      setOrders((current) => [order, ...current])
+      return false
+    }
+  }
+
+  const decideOrder = (order, accepted) => {
+    const updated = { ...order, status: accepted ? 'ACCEPTED' : 'DECLINED' }
+    try {
+      writeDemoOrder(updated)
+    } catch {
+      return
+    }
+    setOrders((current) => current.map((item) => item.id === order.id ? updated : item))
+  }
+
+  return (
+    <section className="community-board" id={type === 'MARKETPLACE' ? 'campus-finds' : type === 'EVENT' ? 'upcoming-events' : undefined}>
+      <div className="community-board-heading">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-700">Sample community posts</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">{config.name} posts</h2>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">{config.intro}</p>
+        </div>
+        <label className="community-search">
+          Search {config.name.toLowerCase()}
+          <input
+            className="marketplace-search"
+            onChange={(event) => setSearchQuery(event.target.value)}
+            placeholder="Search posts or campus"
+            type="search"
+            value={searchQuery}
+          />
+        </label>
+      </div>
+      <PostComposer type={type} authSession={authSession} onRegister={onRegister} onCreated={addPost} />
+      {type === 'MARKETPLACE' && authSession && (
+        <MarketplaceOrders authSession={authSession} orders={orders} onDecide={decideOrder} />
+      )}
+      <div className="community-filter-row" aria-label={`Filter ${config.name.toLowerCase()} posts`}>
+        {filters.map((filter) => (
+          <button
+            aria-pressed={activeFilter === filter}
+            className={`campus-button px-4 py-2.5 text-xs font-semibold ${activeFilter === filter ? 'campus-button-primary' : 'campus-button-secondary'}`}
+            key={filter}
+            onClick={() => setActiveFilter(filter)}
+            type="button"
+          >
+            {filter === 'All' ? 'All posts' : filter}
+          </button>
+        ))}
+      </div>
+      {visiblePosts.length ? (
+        <div className="community-post-grid">
+          {visiblePosts.map((post) => (
+            <article className="community-post-card" key={post.id}>
+              {post.mediaUrl && (
+                post.mediaType === 'VIDEO'
+                  ? <video className="community-post-media" controls preload="metadata" src={post.mediaUrl}>Your browser does not support video.</video>
+                  : <img className="community-post-media" src={post.mediaUrl} alt={post.title} loading="lazy" />
+              )}
+              <div className="community-post-content">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="community-post-category">{post.category}</span>
+                  {post.price != null && <strong className="text-sm text-blue-800">ETB {Number(post.price).toLocaleString()}</strong>}
+                </div>
+                <h3>{post.title}</h3>
+                <p className="community-post-description">{post.description}</p>
+                {post.eventDate && <p className="community-post-detail">When: {new Date(post.eventDate).toLocaleString()}</p>}
+                <div className="community-post-footer">
+                  <span>{post.campus}</span>
+                  <span>{post.authorUsername} · {new Date(post.createdAt).toLocaleDateString()}</span>
+                </div>
+                {type === 'MARKETPLACE' && (
+                  <div className="mt-4 border-t border-slate-100 pt-4">
+                    <MarketplaceOrderButton
+                      post={post}
+                      authSession={authSession}
+                      onRegister={onRegister}
+                      orders={orders}
+                      onOrder={addOrder}
+                    />
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p className="community-board-empty">{posts.length ? 'No posts match your search. Try another term or filter.' : 'No posts yet. Be the first to share something with your campus.'}</p>
+      )}
+    </section>
+  )
+}
+
+function CommunityPage({ type, authSession, onRegister, onLogout, theme, onToggleTheme }) {
+  const config = communityTypes[type]
+  return (
+    <main className="min-h-screen bg-white text-slate-950">
+      <SiteHeader activePage={type === 'LOST_FOUND' ? 'lost-found' : 'community'} authSession={authSession} onRegister={onRegister} onLogout={onLogout} theme={theme} onToggleTheme={onToggleTheme} />
+      <section className="feature-page-hero">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-200">CampusLink · {config.name}</p>
+        <h1>{type === 'LOST_FOUND' ? <>Good things find<br />their way <span>back.</span></> : <>Campus life is<br /><span>better together.</span></>}</h1>
+        <p>{config.intro} Explore the sample posts or sign in to try the local demo interactions.</p>
+      </section>
+      <CommunityBoard type={type} authSession={authSession} onRegister={onRegister} />
+      <footer className="bg-slate-950 py-8 text-center text-sm text-slate-400">
+        A home for everything happening on campus · <a className="text-white underline" href="/">Back to CampusLink</a>
+      </footer>
+    </main>
+  )
+}
+
+function MarketplacePage({ authSession, onRegister, onLogout, theme, onToggleTheme }) {
+  return (
+    <main className="min-h-screen bg-white text-slate-950">
+      <SiteHeader
+        activePage="marketplace"
+        authSession={authSession}
+        onRegister={onRegister}
+        onLogout={onLogout}
+        theme={theme}
+        onToggleTheme={onToggleTheme}
+      />
+
+      <section className="events-hero relative isolate flex min-h-[440px] items-end overflow-hidden bg-slate-950 sm:min-h-[520px]">
+        <ImageCarousel
+          slides={marketSlides}
+          label="Books, technology, and essentials for campus"
+          interval={6500}
+          absolute
+          preloadImages
+          showControls
+        >
+          {(slide, index) => (
+            <>
+              <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-slate-950/45 to-slate-950/85" />
+              <div className="hero-image-caption event-image-caption">
+                <span>0{index + 1} / 0{marketSlides.length}</span>
+                <strong>{slide.label}</strong>
+                <p>{slide.alt}</p>
+              </div>
+            </>
+          )}
+        </ImageCarousel>
+        <div className="pointer-events-none relative mx-auto w-[min(1120px,calc(100%-40px))] pb-14 pt-24 text-white sm:pb-20">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-200">CampusLink marketplace · demo</p>
+          <h1 className="mt-5 max-w-3xl text-5xl font-semibold leading-[1.04] tracking-[-0.05em] sm:text-7xl">
+            Good finds.<br />Closer <span className="text-blue-300">to campus.</span>
+          </h1>
+          <p className="mt-5 max-w-xl text-sm leading-7 text-white/85 sm:text-base">
+            Explore sample campus listings, try the student-to-student marketplace, and see how a purchase request would work.
+          </p>
+          <div className="pointer-events-auto mt-7 flex flex-wrap gap-3">
+            <a className="campus-button campus-button-primary inline-flex min-h-11 items-center gap-2 px-5 text-sm font-semibold" href="#campus-finds">
+              Browse campus finds <ArrowIcon />
+            </a>
+            {!authSession && (
+              <button className="campus-button border border-white/40 bg-white/10 px-5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20" onClick={onRegister} type="button">
+                Start selling
+              </button>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <CommunityBoard type="MARKETPLACE" authSession={authSession} onRegister={onRegister} />
+
+      <section className="marketplace-seller-cta relative isolate overflow-hidden bg-slate-950 py-14 text-white sm:py-20">
+        <ImageCarousel slides={marketSlides} label="Campus marketplace essentials" interval={7200} absolute>
+          {() => <div className="absolute inset-0 bg-slate-950/80" />}
+        </ImageCarousel>
+        <div className="relative mx-auto flex w-[min(1120px,calc(100%-40px))] flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-300">Have something useful?</p>
+            <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">Give it a new home on campus.</h2>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-white/75">Connect with students nearby and help good things find their next owner.</p>
+          </div>
+          {authSession
+            ? <a className="campus-button campus-button-primary inline-flex min-h-11 shrink-0 items-center justify-center px-5 text-sm font-semibold" href="/">Back to campus home</a>
+            : <button className="campus-button campus-button-primary inline-flex min-h-11 shrink-0 items-center justify-center px-5 text-sm font-semibold" onClick={onRegister} type="button">Join CampusLink</button>}
+        </div>
+      </section>
+    </main>
+  )
+}
+
+function EventsPage({ authSession, onRegister, onLogout, theme, onToggleTheme }) {
   return (
     <main className="min-h-screen bg-white text-slate-950">
       <SiteHeader
@@ -579,12 +1233,12 @@ function EventsPage({ authSession, onRegister, onLogout, theme, onToggleTheme })
           )}
         </ImageCarousel>
         <div className="pointer-events-none relative mx-auto w-[min(1120px,calc(100%-40px))] pb-14 pt-24 text-white sm:pb-20">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-200">CampusLink events</p>
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-200">CampusLink events · sample listings</p>
           <h1 className="mt-5 max-w-3xl text-5xl font-semibold leading-[1.04] tracking-[-0.05em] sm:text-7xl">
             Student life is<br />better <span className="text-blue-300">together.</span>
           </h1>
           <p className="mt-5 max-w-xl text-sm leading-7 text-white/85 sm:text-base">
-            Discover student celebrations, cultural gatherings, and club events to share with your campus community.
+            Explore sample student celebrations, cultural gatherings, and club events. Event posts are saved locally in this demo.
           </p>
           <a className="campus-button campus-button-primary pointer-events-auto mt-7 inline-flex min-h-11 items-center gap-2 px-5 text-sm font-semibold" href="#upcoming-events">
             Explore events <ArrowIcon />
@@ -592,92 +1246,7 @@ function EventsPage({ authSession, onRegister, onLogout, theme, onToggleTheme })
         </div>
       </section>
 
-      <section className="mx-auto w-[min(1120px,calc(100%-40px))] py-14 sm:py-20" id="upcoming-events">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.17em] text-blue-700">Made for student life</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-black sm:text-5xl">Find your next moment.</h2>
-            <p className="mt-3 max-w-xl text-sm leading-7 text-slate-600">
-              Explore event ideas for your campus community. Dates and locations will appear when campus organizers publish confirmed listings.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2" aria-label="Filter events by type">
-            {eventFilters.map((filter) => (
-              <button
-                aria-pressed={activeFilter === filter}
-                className={`campus-button px-4 py-2.5 text-xs font-semibold ${activeFilter === filter ? 'campus-button-primary' : 'campus-button-secondary'}`}
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                type="button"
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-9 grid gap-5 md:grid-cols-2">
-          {visibleEvents.map((event) => {
-            const isExpanded = expandedEvent === event.title
-            return (
-              <article className="event-card overflow-hidden border border-slate-200 bg-white" key={event.title}>
-                <div className="event-card-image relative h-56 overflow-hidden bg-slate-100 sm:h-64">
-                  <img className="size-full object-cover" src={event.image} alt={event.alt} loading="lazy" />
-                  <span className="absolute left-4 top-4 rounded-md bg-white/95 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.12em] text-blue-800">
-                    {event.category}
-                  </span>
-                </div>
-                <div className="p-5 sm:p-6">
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-slate-500">
-                    <span>{event.campus}</span>
-                    <span className="event-date-label">Date to be announced</span>
-                  </div>
-                  <h3 className="mt-3 text-2xl font-semibold tracking-tight text-black">{event.title}</h3>
-                  {isExpanded && (
-                    <p className="mt-3 text-sm leading-6 text-slate-600">{event.description}</p>
-                  )}
-                  <div className="mt-5 flex items-center justify-between gap-3 border-t border-slate-100 pt-4">
-                    <button
-                      aria-expanded={isExpanded}
-                      className="text-sm font-semibold text-blue-800 transition hover:text-blue-600"
-                      onClick={() => setExpandedEvent(isExpanded ? null : event.title)}
-                      type="button"
-                    >
-                      {isExpanded ? 'Close details' : 'Event details'}
-                    </button>
-                    <button
-                      className="campus-button campus-button-secondary px-4 py-2 text-xs font-semibold"
-                      onClick={() => {
-                        if (!authSession) {
-                          onRegister()
-                          return
-                        }
-                        setInterestedEvents((current) => (
-                          current.includes(event.title)
-                            ? current.filter((title) => title !== event.title)
-                            : [...current, event.title]
-                        ))
-                      }}
-                      type="button"
-                    >
-                      {authSession
-                        ? interestedEvents.includes(event.title) ? 'Saved to interests' : 'Save to interests'
-                        : 'Join to participate'}
-                    </button>
-                  </div>
-                  {authSession && isExpanded && (
-                    <p className="mt-3 text-xs leading-5 text-slate-500" role="status">
-                      {interestedEvents.includes(event.title)
-                        ? `Saved for ${authSession.user.username}. Confirmed event dates will appear when organizers publish them.`
-                        : `Signed in as ${authSession.user.username}. Confirmed event dates will appear when organizers publish them.`}
-                    </p>
-                  )}
-                </div>
-              </article>
-            )
-          })}
-        </div>
-      </section>
+      <CommunityBoard type="EVENT" authSession={authSession} onRegister={onRegister} />
 
       <section className="bg-black py-12 text-white sm:py-16">
         <div className="mx-auto flex w-[min(1120px,calc(100%-40px))] flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
@@ -695,12 +1264,21 @@ function EventsPage({ authSession, onRegister, onLogout, theme, onToggleTheme })
 }
 
 function App() {
-  const [likedPost, setLikedPost] = useState(false)
-  const [authSession, setAuthSession] = useState(null)
+  const [authSession, setAuthSession] = useState(() => {
+    try {
+      const savedSession = JSON.parse(window.sessionStorage.getItem('campuslink-session'))
+      return savedSession?.token && savedSession?.user ? savedSession : null
+    } catch {
+      return null
+    }
+  })
   const [theme, setTheme] = useState(() => (
     window.localStorage.getItem('campuslink-theme') === 'dark' ? 'dark' : 'light'
   ))
   const isEventsPage = window.location.pathname === '/events'
+  const isMarketplacePage = window.location.pathname === '/marketplace'
+  const isLostFoundPage = window.location.pathname === '/lost-found'
+  const isCommunityPage = window.location.pathname === '/community'
   const [authMode, setAuthMode] = useState(() => {
     if (window.location.hash === '#login') return 'login'
     if (window.location.hash === '#register') return 'register'
@@ -717,9 +1295,14 @@ function App() {
   }
 
   useEffect(() => {
-    document.documentElement.dataset.theme = theme
+    document.documentElement.dataset.theme = authMode ? 'light' : theme
     window.localStorage.setItem('campuslink-theme', theme)
-  }, [theme])
+  }, [authMode, theme])
+
+  useEffect(() => {
+    if (authSession) window.sessionStorage.setItem('campuslink-session', JSON.stringify(authSession))
+    else window.sessionStorage.removeItem('campuslink-session')
+  }, [authSession])
 
   useEffect(() => {
     const syncAuthMode = () => {
@@ -741,8 +1324,16 @@ function App() {
   }, [authMode])
 
   useEffect(() => {
-    document.title = isEventsPage ? 'Campus Events | CampusLink' : 'CampusLink | Your campus, all in one place'
-  }, [isEventsPage])
+    document.title = isEventsPage
+      ? 'Campus Events | CampusLink'
+      : isMarketplacePage
+        ? 'Campus Marketplace | CampusLink'
+        : isLostFoundPage
+          ? 'Lost & Found | CampusLink'
+          : isCommunityPage
+            ? 'Campus Community | CampusLink'
+            : 'CampusLink | Your campus, all in one place'
+  }, [isEventsPage, isMarketplacePage, isLostFoundPage, isCommunityPage])
 
   useEffect(() => {
     if (authMode) return undefined
@@ -804,12 +1395,43 @@ function App() {
         mode={authMode}
         onChangeMode={navigateToAuth}
         onAuthenticated={setAuthSession}
-        theme={theme}
-        onToggleTheme={toggleTheme}
         onHome={() => {
-          window.history.pushState(null, '', isEventsPage ? '/events' : '#home')
+          window.history.pushState(
+            null,
+            '',
+            isEventsPage ? '/events'
+              : isMarketplacePage ? '/marketplace'
+                : isLostFoundPage ? '/lost-found'
+                  : isCommunityPage ? '/community' : '#home',
+          )
           setAuthMode(null)
         }}
+      />
+    )
+  }
+
+  if (isLostFoundPage) {
+    return (
+      <CommunityPage
+        type="LOST_FOUND"
+        authSession={authSession}
+        onRegister={() => navigateToAuth('register')}
+        onLogout={() => setAuthSession(null)}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
+    )
+  }
+
+  if (isCommunityPage) {
+    return (
+      <CommunityPage
+        type="SOCIAL"
+        authSession={authSession}
+        onRegister={() => navigateToAuth('register')}
+        onLogout={() => setAuthSession(null)}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
     )
   }
@@ -817,6 +1439,18 @@ function App() {
   if (isEventsPage) {
     return (
       <EventsPage
+        authSession={authSession}
+        onRegister={() => navigateToAuth('register')}
+        onLogout={() => setAuthSession(null)}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
+    )
+  }
+
+  if (isMarketplacePage) {
+    return (
+      <MarketplacePage
         authSession={authSession}
         onRegister={() => navigateToAuth('register')}
         onLogout={() => setAuthSession(null)}
@@ -837,12 +1471,11 @@ function App() {
         onToggleTheme={toggleTheme}
       />
 
-      <section className="relative min-h-[680px] overflow-hidden bg-slate-900 sm:min-h-[740px]" id="home">
+      <section className="relative min-h-[720px] overflow-hidden bg-slate-900 sm:min-h-[780px]" id="home">
         <ImageCarousel
           slides={heroSlides}
           label="Ethiopian university campuses"
           absolute
-          preloadImages
           showControls
           imageClassName="object-center"
         >
@@ -885,12 +1518,7 @@ function App() {
         <div className="pointer-events-none absolute inset-x-0 bottom-[67px] z-10 h-px bg-white/25" />
       </section>
 
-      <div className="border-b border-slate-100 bg-slate-50">
-        <div className="mx-auto flex min-h-16 w-[min(1240px,calc(100%-40px))] flex-wrap items-center justify-center gap-x-7 gap-y-2 py-4 text-[10px] font-bold tracking-[0.14em] text-slate-500 sm:justify-between sm:text-xs">
-          <span className="text-emerald-800">BUILT FOR EVERY CAMPUS</span>
-          <span>ADDIS ABABA</span><span>BAHIR DAR</span><span>GONDAR</span><span>HAWASSA</span>
-        </div>
-      </div>
+      <UniversityMarquee />
 
       <section className="scroll-reveal mx-auto w-[min(1120px,calc(100%-40px))] py-20 sm:py-28" id="how-it-works">
         <SectionLabel number="01">The campus way</SectionLabel>
@@ -906,6 +1534,21 @@ function App() {
               Explore campus features <ArrowIcon diagonal />
             </a>
           </div>
+        </div>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-label="How to use CampusLink">
+          {[
+            { number: '01', title: 'Join your campus', detail: 'Create an account or log in to publish posts and connect.', image: photos.addis, href: '#register' },
+            { number: '02', title: 'Choose a space', detail: 'Browse Lost & Found, the marketplace, events, or the student feed.', image: lostSlides[0].image, href: '/lost-found' },
+            { number: '03', title: 'Share the details', detail: 'Add a clear description, your campus, and an optional photo or video.', image: marketSlides[0].image, href: '/marketplace' },
+            { number: '04', title: 'Connect nearby', detail: 'See posts shared by students and discover what is happening around you.', image: celebrationSlides[0].image, href: '/events' },
+          ].map((step) => (
+            <a className="how-to-card" href={step.href} key={step.number}>
+              <img src={step.image} alt="" loading="lazy" />
+              <span>{step.number}</span>
+              <h3>{step.title}</h3>
+              <p>{step.detail}</p>
+            </a>
+          ))}
         </div>
       </section>
 
@@ -940,7 +1583,7 @@ function App() {
                 Post a lost item, share a find, and help good things make their way back. Every post connects with people right where you study.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <a className="campus-button campus-button-primary inline-flex min-h-11 items-center gap-2 px-5 text-sm font-semibold" href="#join">
+                <a className="campus-button campus-button-primary inline-flex min-h-11 items-center gap-2 px-5 text-sm font-semibold" href="/lost-found">
                   Explore Lost &amp; Found <ArrowIcon />
                 </a>
                 <a className="campus-button campus-button-secondary inline-flex min-h-11 items-center px-5 text-sm font-semibold" href="#community">How it works</a>
@@ -967,7 +1610,7 @@ function App() {
             <p className="mt-4 max-w-md text-sm leading-7 text-slate-600">
               Books, tech, and everyday campus essentials deserve a second life—at prices that work for students.
             </p>
-            <a className="campus-button campus-button-primary mt-7 inline-flex min-h-11 items-center gap-2 px-5 text-sm font-semibold" href="#join">
+            <a className="campus-button campus-button-primary mt-7 inline-flex min-h-11 items-center gap-2 px-5 text-sm font-semibold" href="/marketplace">
               Explore the marketplace <ArrowIcon />
             </a>
             <span className="mt-5 text-[10px] font-semibold tracking-[0.12em] text-blue-800">BUY · SELL · SWAP · REPEAT</span>
@@ -1012,8 +1655,8 @@ function App() {
             <p className="mt-5 max-w-md text-sm leading-7 text-white/80">
               Share what’s happening, celebrate your wins, discover campus conversations, and stay connected to the people around you.
             </p>
-            <a className="campus-button campus-button-primary mt-7 inline-flex min-h-11 items-center gap-2 px-5 text-sm font-semibold" href="#join">
-              Join the conversation <ArrowIcon />
+            <a className="campus-button campus-button-primary mt-7 inline-flex min-h-11 items-center gap-2 px-5 text-sm font-semibold" href="/community">
+              Open the student feed <ArrowIcon />
             </a>
           </div>
           <div className="overflow-hidden rounded-xl border border-white/60 bg-white p-5 text-slate-900 shadow-2xl sm:p-7">
@@ -1028,16 +1671,12 @@ function App() {
             <p className="py-5 text-sm leading-7 text-slate-700 sm:text-base">
               From a club announcement to a small campus win—share the moments and ideas that bring your student community closer.
             </p>
-            <div className="flex items-center justify-between border-t border-slate-100 pt-4 text-xs text-slate-500">
-              <span className="font-semibold text-blue-700">✳ {likedPost ? '13' : '12'} students liked this</span>
-              <span>3 replies</span>
+            <div className="border-t border-slate-100 pt-4 text-xs font-semibold text-blue-700">
+              A shared space for campus voices
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
-              <button className={`campus-button campus-button-secondary px-4 py-2 text-xs font-semibold ${likedPost ? 'is-selected' : ''}`} type="button" onClick={() => setLikedPost((liked) => !liked)} aria-pressed={likedPost}>
-                {likedPost ? '♥ Liked' : '♡ Like'}
-              </button>
-              <a className="campus-button campus-button-secondary px-4 py-2 text-xs font-semibold no-underline" href="#join">Reply</a>
-              <a className="campus-button campus-button-secondary px-4 py-2 text-xs font-semibold no-underline" href="#join">Share</a>
+              <a className="campus-button campus-button-secondary px-4 py-2 text-xs font-semibold no-underline" href="/community">Explore conversations</a>
+              <a className="campus-button campus-button-secondary px-4 py-2 text-xs font-semibold no-underline" href="/community#register">Share a post</a>
             </div>
           </div>
         </div>
@@ -1086,9 +1725,9 @@ function App() {
               <p className="mt-3 text-xs leading-5 text-slate-400">A home for everything<br />happening on campus.</p>
             </div>
             <nav className="flex flex-wrap gap-x-6 gap-y-3 text-xs font-medium text-slate-300" aria-label="Footer navigation">
-              <a className="transition hover:text-white" href="#lost-found">Lost &amp; Found</a>
+              <a className="transition hover:text-white" href="/lost-found">Lost &amp; Found</a>
               <a className="transition hover:text-white" href="#marketplace">Marketplace</a>
-              <a className="transition hover:text-white" href="#community">Community</a>
+              <a className="transition hover:text-white" href="/community">Community</a>
               <a className="transition hover:text-white" href="/events">Events</a>
             </nav>
             <a className="text-xs font-semibold text-slate-300 no-underline transition hover:text-white" href="#home">Back to the top ↑</a>
